@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>職場壓力指數測驗 - 免費測你的上班壓力% | Tool-Maker</title>
+  <meta name="description" content="10 道超有感職場情境題，即時算出你的壓力指數 0~100%！從「佛系無壓」到「壓力爆表」7 種類型，找出專屬你的壓力人格。免費線上測驗，結果超適合分享！" />
+  <!-- OG 標籤 -->
+  <meta property="og:title" content="你的職場壓力有多大？10 題測出壓力指數%" />
+  <meta property="og:description" content="從佛系無壓到壓力爆表，快來看看你是哪一型！" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="zh_TW" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="你的職場壓力有多大？10 題測出壓力指數%" />
+  <meta name="twitter:description" content="從佛系無壓到壓力爆表，快來看看你是哪一型！" />
+  <meta name="twitter:image" content="./assets/og-image.png" />
+  <!-- 字體 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <!-- 頁首廣告 -->
+  <header>
+    <div class="ad-slot ad-slot--header" data-ad-slot="header" aria-label="Advertisement"></div>
+  </header>
+
+  <main class="tool-layout">
+    <div class="tool-content">
+
+      <!-- 起始畫面 -->
+      <div id="screen-start" class="screen active">
+        <div class="start-card">
+          <h1 class="gradient-title">職場壓力指數測驗</h1>
+          <p class="start-subtitle">10 題測出你的壓力有多大</p>
+          <div class="start-meter">
+            <div class="meter-bar">
+              <div class="meter-fill meter-fill--demo"></div>
+            </div>
+            <div class="meter-labels">
+              <span>0%</span><span>50%</span><span>100%</span>
+            </div>
+          </div>
+          <button id="btn-start" class="btn btn-primary" type="button">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            開始測驗
+          </button>
+          <p class="start-note">大約 1 分鐘即可完成</p>
+        </div>
+      </div>
+
+      <!-- 答題畫面 -->
+      <div id="screen-quiz" class="screen">
+        <div class="quiz-card">
+          <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
+          <div class="question-counter">
+            <span id="q-current">1</span> / <span id="q-total">10</span>
+          </div>
+          <!-- 題目情境插圖 -->
+          <div class="question-illustration-wrap">
+            <img id="question-illustration" class="question-illustration" alt="題目情境" loading="eager" />
+          </div>
+          <h2 id="question-text" class="question-text"></h2>
+          <div id="options-container" class="options-container"></div>
+        </div>
+      </div>
+
+      <!-- 計算中畫面 -->
+      <div id="screen-loading" class="screen">
+        <div class="loading-card">
+          <div class="loading-spinner"></div>
+          <p class="loading-text">正在計算你的壓力指數...</p>
+        </div>
+      </div>
+
+      <!-- 結果畫面 -->
+      <div id="screen-result" class="screen">
+        <div class="result-card">
+          <p class="result-label">你的職場壓力指數</p>
+          <div class="result-percentage-wrap">
+            <span id="result-percentage" class="result-percentage">0</span><span class="result-percent-sign">%</span>
+          </div>
+          <div class="result-meter">
+            <div class="meter-bar meter-bar--result">
+              <div id="result-meter-fill" class="meter-fill"></div>
+            </div>
+          </div>
+          <div class="result-image-wrap">
+            <img id="result-image" class="result-image" alt="壓力類型形象圖" />
+          </div>
+          <h2 id="result-title" class="result-title"></h2>
+          <p id="result-desc" class="result-desc"></p>
+          <div class="result-actions">
+            <button id="btn-retry" class="btn btn-secondary" type="button">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+              再測一次
+            </button>
+            <button id="btn-share" class="btn btn-primary" type="button">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              分享結果
+            </button>
+          </div>
+          <!-- 分享面板 -->
+          <div id="share-panel" class="share-panel hidden">
+            <button class="share-btn" data-platform="facebook" type="button">Facebook</button>
+            <button class="share-btn" data-platform="line" type="button">LINE</button>
+            <button class="share-btn" data-platform="twitter" type="button">Twitter</button>
+            <button class="share-btn" data-platform="copy" type="button">複製連結</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 側邊廣告 -->
+    <aside class="tool-sidebar">
+      <div class="ad-slot ad-slot--sidebar" data-ad-slot="sidebar" aria-label="Advertisement"></div>
+    </aside>
+  </main>
+
+  <!-- 頁尾廣告 -->
+  <footer>
+    <div class="ad-slot ad-slot--footer" data-ad-slot="footer" aria-label="Advertisement"></div>
+  </footer>
+
+  <script src="./main.js"></script>
+  <script src="./ads/ad-loader.js"></script>
+</body>
+</html>
